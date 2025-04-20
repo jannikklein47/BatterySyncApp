@@ -6,14 +6,65 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2F313ED12DB06AD000E1209C /* BatterySync WidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2F313EBE2DB06ACF00E1209C /* BatterySync WidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2F313EED2DB06C9900E1209C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F313EC22DB06ACF00E1209C /* SwiftUI.framework */; };
+		2F313EF02DB06C9B00E1209C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F313EC02DB06ACF00E1209C /* WidgetKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2F313ECF2DB06AD000E1209C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2F313E9D2DB0699300E1209C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2F313EBD2DB06ACF00E1209C;
+			remoteInfo = "BatterySync WidgetExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2F313ED62DB06AD000E1209C /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2F313ED12DB06AD000E1209C /* BatterySync WidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2F313EA52DB0699300E1209C /* BatterySyncApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BatterySyncApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F313EBE2DB06ACF00E1209C /* BatterySync WidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "BatterySync WidgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F313EC02DB06ACF00E1209C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		2F313EC22DB06ACF00E1209C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		2F313ED22DB06AD000E1209C /* Exceptions for "BatterySync Widget" folder in "BatterySync WidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 2F313EBD2DB06ACF00E1209C /* BatterySync WidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		2F313EA72DB0699300E1209C /* BatterySyncApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = BatterySyncApp;
+			sourceTree = "<group>";
+		};
+		2F313EC42DB06ACF00E1209C /* BatterySync Widget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				2F313ED22DB06AD000E1209C /* Exceptions for "BatterySync Widget" folder in "BatterySync WidgetExtension" target */,
+			);
+			path = "BatterySync Widget";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,6 +77,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2F313EBB2DB06ACF00E1209C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F313EED2DB06C9900E1209C /* SwiftUI.framework in Frameworks */,
+				2F313EF02DB06C9B00E1209C /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -33,6 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				2F313EA72DB0699300E1209C /* BatterySyncApp */,
+				2F313EC42DB06ACF00E1209C /* BatterySync Widget */,
+				2F313EBF2DB06ACF00E1209C /* Frameworks */,
 				2F313EA62DB0699300E1209C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,8 +103,18 @@
 			isa = PBXGroup;
 			children = (
 				2F313EA52DB0699300E1209C /* BatterySyncApp.app */,
+				2F313EBE2DB06ACF00E1209C /* BatterySync WidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2F313EBF2DB06ACF00E1209C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2F313EC02DB06ACF00E1209C /* WidgetKit.framework */,
+				2F313EC22DB06ACF00E1209C /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,10 +127,12 @@
 				2F313EA12DB0699300E1209C /* Sources */,
 				2F313EA22DB0699300E1209C /* Frameworks */,
 				2F313EA32DB0699300E1209C /* Resources */,
+				2F313ED62DB06AD000E1209C /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2F313ED02DB06AD000E1209C /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				2F313EA72DB0699300E1209C /* BatterySyncApp */,
@@ -69,6 +143,28 @@
 			productName = BatterySyncApp;
 			productReference = 2F313EA52DB0699300E1209C /* BatterySyncApp.app */;
 			productType = "com.apple.product-type.application";
+		};
+		2F313EBD2DB06ACF00E1209C /* BatterySync WidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F313ED32DB06AD000E1209C /* Build configuration list for PBXNativeTarget "BatterySync WidgetExtension" */;
+			buildPhases = (
+				2F313EBA2DB06ACF00E1209C /* Sources */,
+				2F313EBB2DB06ACF00E1209C /* Frameworks */,
+				2F313EBC2DB06ACF00E1209C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				2F313EC42DB06ACF00E1209C /* BatterySync Widget */,
+			);
+			name = "BatterySync WidgetExtension";
+			packageProductDependencies = (
+			);
+			productName = "BatterySync WidgetExtension";
+			productReference = 2F313EBE2DB06ACF00E1209C /* BatterySync WidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +177,9 @@
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					2F313EA42DB0699300E1209C = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					2F313EBD2DB06ACF00E1209C = {
 						CreatedOnToolsVersion = 16.3;
 					};
 				};
@@ -100,12 +199,20 @@
 			projectRoot = "";
 			targets = (
 				2F313EA42DB0699300E1209C /* BatterySyncApp */,
+				2F313EBD2DB06ACF00E1209C /* BatterySync WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		2F313EA32DB0699300E1209C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2F313EBC2DB06ACF00E1209C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +229,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2F313EBA2DB06ACF00E1209C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2F313ED02DB06AD000E1209C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2F313EBD2DB06ACF00E1209C /* BatterySync WidgetExtension */;
+			targetProxy = 2F313ECF2DB06AD000E1209C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2F313EAF2DB0699400E1209C /* Debug */ = {
@@ -253,17 +375,20 @@
 				CODE_SIGN_ENTITLEMENTS = BatterySyncApp/BatterySyncApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = Alpha;
 				DEVELOPMENT_TEAM = A89J94S4SA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BatterySyncApp;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = jannikklein47.BatterySyncApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
@@ -280,20 +405,83 @@
 				CODE_SIGN_ENTITLEMENTS = BatterySyncApp/BatterySyncApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = Alpha;
 				DEVELOPMENT_TEAM = A89J94S4SA;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BatterySyncApp;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = jannikklein47.BatterySyncApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		2F313ED42DB06AD000E1209C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "BatterySync Widget/BatterySync_Widget.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = Alpha;
+				DEVELOPMENT_TEAM = A89J94S4SA;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BatterySync Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "BatterySync Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = jannikklein47.BatterySyncApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		2F313ED52DB06AD000E1209C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "BatterySync Widget/BatterySync_Widget.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = Alpha;
+				DEVELOPMENT_TEAM = A89J94S4SA;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BatterySync Widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "BatterySync Widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = jannikklein47.BatterySyncApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -316,6 +504,15 @@
 			buildConfigurations = (
 				2F313EB22DB0699400E1209C /* Debug */,
 				2F313EB32DB0699400E1209C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F313ED32DB06AD000E1209C /* Build configuration list for PBXNativeTarget "BatterySync WidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F313ED42DB06AD000E1209C /* Debug */,
+				2F313ED52DB06AD000E1209C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

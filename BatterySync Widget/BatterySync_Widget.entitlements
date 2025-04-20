@@ -8,11 +8,9 @@
 	<array>
 		<string>group.BatterySyncApp</string>
 	</array>
-	<key>com.apple.security.files.user-selected.read-only</key>
+	<key>com.apple.security.cs.disable-library-validation</key>
 	<true/>
-	<key>com.apple.security.network.client</key>
-	<true/>
-	<key>com.apple.security.network.server</key>
+	<key>com.apple.security.files.user-selected.read-write</key>
 	<true/>
 </dict>
 </plist>
