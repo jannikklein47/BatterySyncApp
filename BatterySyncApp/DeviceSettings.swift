@@ -81,7 +81,7 @@ struct DeviceSettings : View {
             print("No AuthToken to update isShown")
             return
         }
-        let url = URL(string: "http://localhost:3000/device")!
+        let url = URL(string: "http://\(Globals.IPADDRESS):3000/device")!
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.setValue(authToken, forHTTPHeaderField: "Authorization")
@@ -124,7 +124,7 @@ struct DeviceSettings : View {
             print("No AuthToken to update isShown")
             return
         }
-        let url = URL(string: "http://localhost:3000/device")!
+        let url = URL(string: "http://\(Globals.IPADDRESS):3000/device")!
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         request.setValue(authToken, forHTTPHeaderField: "Authorization")

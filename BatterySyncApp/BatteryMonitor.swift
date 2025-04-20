@@ -52,7 +52,7 @@ class BatteryMonitor {
             return
         }
         
-        guard let url = URL(string: "http://localhost:3000/battery") else {return}
+        guard let url = URL(string: "http://\(Globals.IPADDRESS):3000/battery") else {return}
         
         var req = URLRequest(url: url)
         req.httpMethod = "GET"
@@ -171,7 +171,7 @@ class LocalBatteryMonitoring {
             print("Keinen authToken gefunden, also keine POST gesendet")
         }
         
-        guard let url = URL(string: "http://localhost:3000/battery?device=Macbook+Pro+von+Jannik&battery=\(level)") else { return }
+        guard let url = URL(string: "http://\(Globals.IPADDRESS):3000/battery?device=Macbook+Pro+von+Jannik&battery=\(level)") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue(authToken, forHTTPHeaderField: "Authorization")

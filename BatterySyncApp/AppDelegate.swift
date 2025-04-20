@@ -271,7 +271,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         print("Passwort: \(password)")
         
         // Beispiel: API-Call vorbereiten
-        let url = URL(string: "http://localhost:3000/login")!
+        let url = URL(string: "http://\(Globals.IPADDRESS):3000/login")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
@@ -356,7 +356,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func validateToken(_ token: String, completion: @escaping (String) -> Void) {
-        guard let url = URL(string: "http://localhost:3000/login/auth") else {
+        guard let url = URL(string: "http://\(Globals.IPADDRESS):3000/login/auth") else {
             completion("")
             return
         }
@@ -409,7 +409,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func checkServiceAvailability() {
-        let url = URL(string: "http://localhost:3000/debug")!
+        let url = URL(string: "http://\(Globals.IPADDRESS):3000/debug")!
         var request = URLRequest(url: url)
         
         request.httpMethod = "GET"
