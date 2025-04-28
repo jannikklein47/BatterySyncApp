@@ -13,6 +13,7 @@ struct device : Codable, Equatable {
     var name : String
     var battery : Double
     var isShown : Bool
+    var chargingStatus : Bool
 }
 
 class BatteryMonitor {
@@ -79,7 +80,7 @@ class BatteryMonitor {
         
             let responseString = String(data: data, encoding: .utf8)!
             
-            print("Antwort von GET: \(responseString)")
+            print("Antwort von BatteryMonitor GET: \(responseString)")
             
             
             //print("Antwort des Backends: \(responseString).\nVerarbeitete Daten:")
@@ -98,6 +99,7 @@ class BatteryMonitor {
                     //print("Fehler beim Dekodieren: \(error)")
                     self.serviceReachable = false
                     self.errorMessage = error.localizedDescription
+                    print("\(error)")
                 }
             } else {
                 //print("Ungültiger JSON-String")
@@ -142,6 +144,7 @@ class BatteryMonitor {
 
 class LocalBatteryMonitoring {
     private var lastBatteryLevel: Double = -1
+    private var lastChargingStatus: Bool = false
 
     public func checkBatteryStatus(force: Bool) {
         
@@ -150,20 +153,25 @@ class LocalBatteryMonitoring {
         guard let info = IOPSCopyPowerSourcesInfo()?.takeRetainedValue(),
               let sources = IOPSCopyPowerSourcesList(info)?.takeRetainedValue() as? [CFTypeRef],
               let description = IOPSGetPowerSourceDescription(info, sources.first!)?.takeUnretainedValue() as? [String: Any],
-              let currentCapacityInt = description[kIOPSCurrentCapacityKey as String] as? Int else {
+              let currentCapacityInt = description[kIOPSCurrentCapacityKey as String] as? Int ,
+              let chargingStatus = description[kIOPSIsChargingKey as String] as? Bool else {
+
             return
         }
         
+        print("Ladestatus: \(chargingStatus)")
+        
         let currentCapacityDouble : Double = Double(currentCapacityInt) / 100
 
-        if currentCapacityDouble != lastBatteryLevel {
+        if (currentCapacityDouble != lastBatteryLevel) || (chargingStatus != lastChargingStatus ){
             lastBatteryLevel = currentCapacityDouble
+            lastChargingStatus = chargingStatus
             print("Akkustand geändert: \(currentCapacityDouble)%")
-            self.sendBatteryUpdate(level: currentCapacityDouble)
+            self.sendBatteryUpdate(level: currentCapacityDouble, chargingStatus: chargingStatus)
         }
     }
 
-    private func sendBatteryUpdate(level: Double) {
+    private func sendBatteryUpdate(level: Double, chargingStatus: Bool) {
         
         let authToken = UserDefaults.standard.string(forKey: "authToken")
         
@@ -171,7 +179,7 @@ class LocalBatteryMonitoring {
             print("Keinen authToken gefunden, also keine POST gesendet")
         }
         
-        guard let url = URL(string: "http://\(Globals.IPADDRESS):3000/battery?device=Macbook+Pro+von+Jannik&battery=\(level)") else { return }
+        guard let url = URL(string: "http://\(Globals.IPADDRESS):3000/battery?device=Macbook+Pro+von+Jannik&battery=\(level)&chargingStatus=\(chargingStatus)") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue(authToken, forHTTPHeaderField: "Authorization")

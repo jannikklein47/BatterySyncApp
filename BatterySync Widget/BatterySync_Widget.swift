@@ -12,6 +12,7 @@ struct device : Codable {
     var name : String
     var battery : Double
     var isShown : Bool
+    var chargingStatus : Bool
 }
 
 struct BatteryEntry : TimelineEntry {
@@ -25,7 +26,7 @@ struct BatteryEntry : TimelineEntry {
 
 struct Provider : TimelineProvider {
     func placeholder(in context: Context) -> BatteryEntry {
-        BatteryEntry(devices: [device(name: "Gerätename", battery: 1, isShown: true), device(name: "Gerätename", battery: 1, isShown: true), device(name: "Gerätename", battery: 1, isShown: true), device(name: "Gerätename", battery: 1, isShown: true), device(name: "Gerätename", battery: 1, isShown: true), device(name: "Gerätename", battery: 1, isShown: true), device(name: "Gerätename", battery: 1, isShown: true), device(name: "Gerätename", battery: 1, isShown: true)], date: Date())
+        BatteryEntry(devices: [device(name: "Gerätename", battery: 1, isShown: true, chargingStatus: true),device(name: "Gerätename", battery: 1, isShown: true, chargingStatus: true),device(name: "Gerätename", battery: 1, isShown: true, chargingStatus: true),device(name: "Gerätename", battery: 1, isShown: true, chargingStatus: true),device(name: "Gerätename", battery: 1, isShown: true, chargingStatus: true),device(name: "Gerätename", battery: 1, isShown: true, chargingStatus: true),device(name: "Gerätename", battery: 1, isShown: true, chargingStatus: true),device(name: "Gerätename", battery: 1, isShown: true, chargingStatus: true)], date: Date())
     }
     
     func getSnapshot(in context: Context, completion: @escaping (BatteryEntry) -> Void) {
@@ -41,6 +42,7 @@ struct Provider : TimelineProvider {
     }
     
     func loadDevices() -> [device] {
+
         if let data = UserDefaults.standard.data(forKey: "deviceInfo"), var decoded = try? JSONDecoder().decode([device].self, from: data) {
             
             //Prepare devices: Delete all entries that have isShown = false
@@ -51,11 +53,12 @@ struct Provider : TimelineProvider {
             let deviceCount = decoded.count
                         
             for _ in deviceCount...8 {
-                decoded.append(device(name: " ", battery: -1, isShown: true))
+                decoded.append(device(name: " ", battery: -1, isShown: true, chargingStatus: false))
             }
             
             return decoded
         }
+
         
         return []
     }
@@ -126,8 +129,9 @@ struct deviceEntry : View {
     
     var body : some View {
         VStack(spacing: 1) {
-            Text(deviceData.name).font(.system(size: 10)).bold()//.lineLimit(1)
-            BatteryView(batteryLevel: deviceData.battery).frame(width: 80, height: 24).padding(4)
+            Text(deviceData.name).font(.system(size: 10)).bold()
+            
+            BatteryView(batteryLevel: deviceData.battery, chargingStatus: deviceData.chargingStatus).frame(width: 80, height: 24).padding(4)
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
@@ -137,7 +141,7 @@ struct placeholderEntry : View {
     var body : some View {
         VStack(spacing: 1) {
             Text(" ").font(.system(size: 10)).bold().lineLimit(1)
-            BatteryView(batteryLevel: -1).frame(width: 80, height: 24).padding()
+            BatteryView(batteryLevel: -1, chargingStatus: false).frame(width: 80, height: 24).padding()
         }
     }
 }
@@ -154,6 +158,7 @@ struct HalfCircleShape : Shape {
 
 struct BatteryView : View {
     var batteryLevel : Double
+    var chargingStatus : Bool
 
     @ViewBuilder
     var body: some View {
@@ -184,12 +189,19 @@ struct BatteryView : View {
                 }
                 .padding(.leading)
                 
-                if (batteryLevel <= 0.15 && batteryLevel > -1) {
+                if (batteryLevel <= 0.15 && batteryLevel > -1 && !chargingStatus) {
                     //Image(systemName: "")
                     HStack {
                         Text(String(Int(batteryLevel * 100))).foregroundStyle(.foreground).bold()
                         Text("!").font(.system(size: 20)).foregroundStyle(.red).bold()
+                        
                     }
+                } else if (batteryLevel > -1 && chargingStatus) {
+                    HStack(spacing: 0) {
+                        Text(String(Int(batteryLevel * 100))).foregroundStyle(.foreground).bold()
+                        Image(systemName: "bolt.fill")
+                    }.padding(0)
+                    
                 } else if (batteryLevel > -1) {
                     Text(String(Int(batteryLevel * 100))).foregroundStyle(.foreground).bold()
                 }
@@ -202,13 +214,13 @@ struct BatteryView : View {
 
 func batteryColor(batteryLevel: Double) -> Color {
     switch batteryLevel {
-        // returns red color for range %0 to %20
+        
         case 0...0.15:
             return Color.red
-        // returns yellow color for range %20 to %50
+        
         case 0.15...0.30:
             return Color.yellow
-        // returns green color for range %50 to %100
+        
         case 0.3...1.0:
         if #available(macOS 15.0, *) {
             //return Color.green.mix(with: .primary, by: -0.2)

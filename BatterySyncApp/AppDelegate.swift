@@ -349,7 +349,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             
         } else {
-            self.accountStatusItem!.title = "Dienste nicht erreichbar."
+            if (accountStatusItem != nil) {
+                self.accountStatusItem!.title = "Dienste nicht erreichbar."
+            }
+            
         }
         print("Login status changed")
         

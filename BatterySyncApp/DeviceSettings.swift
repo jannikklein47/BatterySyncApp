@@ -31,6 +31,7 @@ struct DeviceSettings : View {
                             Image(systemName: devices[i].isShown ? "pin" : "pin.slash")
                             Text("\(devices[i].name)").bold().font(.system(size: 15)).foregroundStyle(devices[i].isShown ? Color.primary : Color.gray)
                             Text("(\(Int(devices[i].battery * 100))%)").foregroundStyle(devices[i].isShown ? Color.primary : Color.gray)
+                            Image(systemName: devices[i].chargingStatus ? "bolt" : "bolt.slash")
                             Spacer()
                             Button(devices[i].isShown ? "Verstecken" : "Anzeigen") {
                                 devices[i].isShown = !devices[i].isShown

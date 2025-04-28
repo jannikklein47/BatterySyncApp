@@ -7,4 +7,5 @@
 
 struct Globals {
     static var IPADDRESS = "192.168.0.119"
+    //static var IPADDRESS = "localhost"
 }
